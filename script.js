@@ -7,7 +7,6 @@ let duration = 0;
 let isResting = false;
 let restDuration = 0;
 let restReps = 0;
-let trialsLeft = 2;
 let vibratingSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3');
 vibratingSound.loop = true; // Make the sound loop continuously
 
@@ -24,9 +23,6 @@ const buzzerSoundSelect = document.getElementById('buzzerSound');
 const clapping = document.getElementById('clapping');
 const partyContainer = document.getElementById('party-container');
 const statusDisplay = document.getElementById('status');
-const trialsLeftDisplay = document.getElementById('trials-left');
-const paymentModal = document.getElementById('payment-modal');
-const purchaseLink = document.getElementById('purchaseLink');
 
 // Create an object to store all buzzer sounds
 const buzzerSounds = {
@@ -35,48 +31,6 @@ const buzzerSounds = {
     buzzer3: document.getElementById('buzzer3'),
     buzzer4: document.getElementById('buzzer4')
 };
-
-// Cookie functions
-function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-// Check if user has trials left
-function checkTrials() {
-    const savedTrials = getCookie('trialsLeft');
-    if (savedTrials !== null) {
-        trialsLeft = parseInt(savedTrials);
-    }
-    
-    if (trialsLeft <= 0) {
-        paymentModal.style.display = 'flex';
-        return false;
-    }
-    return true;
-}
-
-// Update trials display and save to cookie
-function updateTrialsDisplay() {
-    trialsLeftDisplay.textContent = trialsLeft;
-    setCookie('trialsLeft', trialsLeft, 30); // Cookie expires in 30 days
-}
 
 function createConfetti() {
     const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
@@ -132,8 +86,6 @@ function speak(text) {
 
 function startTimer() {
     if (timerId === null) {
-        if (!checkTrials()) return;
-
         totalReps = parseInt(repsInput.value);
         duration = parseInt(durationInput.value);
         restReps = parseInt(restRepsInput.value);
@@ -177,8 +129,6 @@ function startTimer() {
                             updateDisplay();
                             createConfetti();
                             playClapping();
-                            trialsLeft--;
-                            updateTrialsDisplay();
                             setTimeout(() => {
                                 alert('Workout completed!');
                             }, 3000);
@@ -231,7 +181,5 @@ startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
 
-// Initialize display and check trials
-updateDisplay();
-checkTrials();
-updateTrialsDisplay(); 
+// Initialize display
+updateDisplay(); 
