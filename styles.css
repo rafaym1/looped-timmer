@@ -207,15 +207,6 @@ button:active {
     animation: pulse 1s infinite;
 }
 
-.trial-info {
-    background-color: rgba(45, 27, 105, 0.1);
-    padding: 0.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: #2d1b69;
-}
-
 .timer-status {
     font-size: 1.2rem;
     color: #2d1b69;
