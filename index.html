@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looped Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Looped Timer</h1>
+        <div id="trial-info" class="trial-info">
+            <span>Trials remaining: <span id="trials-left">2</span></span>
+        </div>
+        <div class="main-content">
+            <div class="left-section">
+                <div class="input-group">
+                    <div>
+                        <label for="reps">Number of Reps:</label>
+                        <input type="number" id="reps" min="1" value="1">
+                    </div>
+                    <div>
+                        <label for="duration">Duration (seconds):</label>
+                        <input type="number" id="duration" min="1" value="30">
+                    </div>
+                    <div>
+                        <label for="restReps">Rest after every N reps:</label>
+                        <input type="number" id="restReps" min="1" value="1">
+                    </div>
+                    <div>
+                        <label for="restDuration">Rest Duration (seconds):</label>
+                        <input type="number" id="restDuration" min="1" value="30">
+                    </div>
+                    <div>
+                        <label for="buzzerSound">Buzzer Sound:</label>
+                        <select id="buzzerSound">
+                            <option value="buzzer1">Classic Buzzer</option>
+                            <option value="buzzer2">Electronic Beep</option>
+                            <option value="buzzer3">Bell Sound</option>
+                            <option value="buzzer4">Whistle</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="timer-display">
+                    <span id="time">00:00</span>
+                </div>
+                <div class="timer-status">
+                    <span id="status">Ready</span>
+                </div>
+                <div class="controls">
+                    <button id="startBtn">Start</button>
+                    <button id="pauseBtn">Pause</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+                <div class="progress">
+                    <span id="currentRep">Rep: 0/0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="party-container" class="party-container"></div>
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <h2>Trial Period Ended</h2>
+            <p>You've used all your free trials. Please visit our website to purchase the full version.</p>
+            <a href="#" id="purchaseLink" class="purchase-link">Visit Website</a>
+        </div>
+    </div>
+    <audio id="buzzer1" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+    <audio id="buzzer2" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <audio id="buzzer3" src="https://assets.mixkit.co/active_storage/sfx/1434/1434-preview.mp3"></audio>
+    <audio id="buzzer4" src="https://assets.mixkit.co/active_storage/sfx/1433/1433-preview.mp3"></audio>
+    <audio id="clapping" src="https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html> 
